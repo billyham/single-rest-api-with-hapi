@@ -8,7 +8,7 @@ describe('Comicstrip', () => {
     });
 
     ComicstripItem1.validate( err => {
-      if (!err) done('Failed to validate missing name');
+      if (!err) done('Failed to validate missing title');
       else done();
     });
   });
@@ -19,7 +19,7 @@ describe('Comicstrip', () => {
     });
 
     ComicstripItem2.validate( err => {
-      if (!err) done('Failed to validate missing number');
+      if (!err) done('Failed to validate missing author');
       else done();
     });
   });

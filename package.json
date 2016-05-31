@@ -2,9 +2,15 @@
   "name": "hapi-framework",
   "version": "1.0.0",
   "description": "Single resource REST API using Hapi",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "unit-test": "mocha",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/billyham/single-rest-api-with-hapi.git"
   },
   "author": "Dave Hanagan",
   "license": "ISC",

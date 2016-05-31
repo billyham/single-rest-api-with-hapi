@@ -21,22 +21,19 @@ var comicStrip2ID = '';
 
 describe('End to End test', () => {
 
-  describe('POST methods', () => {
-
-    it('POST to /comicstrips returns a JSON object with _id field', done => {
-      app.inject({
-        method: 'POST',
-        url: '/comicstrips',
-        payload: comicStrip1
-      }, function (res) {
-        assert.equal(res.statusCode, 200);
-        assert.equal(res.headers['content-type'], 'application/json; charset=utf-8');
-        assert.property(JSON.parse(res.payload), '_id', 'has _id field');
-        // Save the ID for a later test
-        comicStrip1ID = JSON.parse(res.payload)['_id'];
-        done();
-      });
+  before( done => {
+    app.inject({
+      method: 'POST',
+      url: '/comicstrips',
+      payload: comicStrip1
+    }, function (res) {
+      // Save the ID for a later test
+      comicStrip1ID = JSON.parse(res.payload)['_id'];
+      done();
     });
+  });
+
+  describe('POST methods', () => {
 
     it('POST to /comicstrips returns a JSON object with _id field', done => {
       app.inject({
@@ -114,7 +111,7 @@ describe('End to End test', () => {
         url: `/comicstrips/${comicStrip2ID}`
       }, function (res) {
         assert.equal(res.statusCode, 200);
-        assert.equal(res.payload, `${comicStrip2.title} has been removed from the database.`);
+        assert.equal(JSON.parse(res.payload).Error, `${comicStrip2.title} has been removed from the database.`);
         done();
       });
 
